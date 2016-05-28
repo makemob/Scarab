@@ -1,0 +1,66 @@
+Thermal performance of MIC4605:
+
+Qgate total max for IPD35N10S3L-26 = 39nC (typ 30)
+assume fswitch = 20kHz
+
+If(ave) = Qgate * fswitch = 39nC * 20kHz = 780uA
+
+Pdiode(fwd) = If(ave) * Vf = 780uA * 1.0v (internal diode) = 780uW
+Pdiode(rev) = negligible
+
+Assume Vgs = 11v (12v supply -1v bootstrap diode)
+
+Pdriver = Qg * Vgs * fswitch = 39uC * 11v * 20kHz = 8.58mW
+
+Pdissdriver = Pdriver * Ron / (Ron + Rg + Rgfet) = 8.58mW * 
+
+Ron not specified?  Assume = Rgfet.  Rg = 0 so Pdissdriver = 4.29mW
+
+Ihbo = 400uA max
+Idd = 250uA
+
+Pdiss supply = Vdd * Idd + Vhb * Ihb = 12v * 250uA + 12v * 400uA = 7.8mW
+
+Pdiss total = 7.8mW + 4.29mW + 780uW = 12.87mW
+
+Rth-ja not given???  Assume 170 deg C/W
+
+deltaT = 12.87mW * 170degC/W = 2.2 deg C -> negligible
+
+
+
+For the IPD35N10S3L-26:
+
+Assume iav = 8A.  Rds-on = 26mohm max
+
+Pfet = 26mohm * 8^2 = 1.67W
+
+Max operating temp = 175deg C although may experience solder melt at that temp
+
+Rth-ja = 62K/W for minimal footprint  -> 103 deg temp rise -> max ambient of 72 deg C
+
+40K/W for 6cm^2 cooling area -> 67 deg temp rise -> max ambient of 108 deg C
+
+(Somewhere in between is reasonable if we want 85 deg C ambient, call it 4cm^2)
+
+
+
+For the MIC5205-3.3v reg:
+
+Current consumption -
+Micro 3mA
+CS70 0.5mA
+485 2.2mA
+
+Call it 10mA
+
+Pmax = (Tmax - Tamb) / Rth-ja = (125 - 85) / 220  (on minimum footprint)
+ = 180mW
+ 
+Pd = (Vin - Vout) * Iout + Vin * Ignd
+ = (12 - 3.3) * Iout + 12 * 2.5mA = 180mW
+ 
+ -> Max load at 85 deg = 17mA
+ -> Max load at 25 deg = 49mA
+ 
+Make the footprint a little bigger and we are well clear
