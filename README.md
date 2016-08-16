@@ -19,3 +19,8 @@ Designed to drive Linak LA-35 linear actuators for the MakeMob Bio Mimic art car
 Suitable for all kinds of other clever tricks
 
 Licensed under Creative Commons Attribution Share Alike 4.0, https://creativecommons.org/licenses/by-sa/4.0/legalcode.txt
+
+
+BOM adjustments since v1.0:
+- Replace R1, R2, R8, R9 with 100ohm
+
